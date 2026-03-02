@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حجز موعد | Smile Clinic</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-gradient: linear-gradient(135deg, #eef2f3 0%, #dbe9f4 100%);
+        --form-bg: #ffffff;
+        --primary: #0984e3;
+        --accent: #00cec9;
+        --text: #2d3436;
+        --input-border: #dfe6e9;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      [data-theme="dark"] {
+        --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        --form-bg: #1e293b;
+        --text: #f1f5f9;
+        --input-border: #334155;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* تغيير الخط حسب اللغة تلقائياً */
+      html[lang="ar"] {
+        font-family: "Tajawal", sans-serif;
+      }
+      html[lang="en"] {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: var(--bg-gradient);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        transition: var(--transition);
+      }
+
+      .booking-card {
+        background: var(--form-bg);
+        width: 100%;
+        max-width: 650px;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+        position: relative;
+        animation: fadeIn 0.6s ease-out;
+      }
+
+      .controls {
+        position: absolute;
+        top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      /* ضبط مكان الأزرار حسب اتجاه اللغة */
+      html[dir="rtl"] .controls {
+        left: 20px;
+      }
+      html[dir="ltr"] .controls {
+        right: 20px;
+      }
+
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        border: none;
+        background: var(--input-border);
+        color: var(--text);
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: bold;
+      }
+      .control-btn:hover {
+        background: var(--primary);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .header i {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .field-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .input-box {
+        position: relative;
+      }
+      .input-box i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #b2bec3;
+        transition: var(--transition);
+      }
+      html[dir="rtl"] .input-box i {
+        right: 15px;
+      }
+      html[dir="ltr"] .input-box i {
+        left: 15px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 2px solid var(--input-border);
+        border-radius: 12px;
+        background: transparent;
+        color: var(--text);
+        font-size: 0.95rem;
+        transition: var(--transition);
+      }
+      /* مسافة للأيقونة حسب اللغة */
+      html[dir="rtl"] input,
+      html[dir="rtl"] select,
+      html[dir="rtl"] textarea {
+        padding: 12px 45px 12px 15px;
+      }
+      html[dir="ltr"] input,
+      html[dir="ltr"] select,
+      html[dir="ltr"] textarea {
+        padding: 12px 15px 12px 45px;
+      }
+
+      input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(9, 132, 227, 0.2);
+        outline: none;
+      }
+      input:focus + i {
+        color: var(--primary);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 15px;
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(9, 132, 227, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .booking-card {
+          padding: 25px;
+        }
+      }
+
+      /* --- 1. الشاشات المتوسطة والتابلت (أقل من 768px) --- */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        .booking-card {
+          padding: 30px 20px;
+        }
+        .header h1 {
+          font-size: 1.6rem;
+        }
+      }
+
+      /* --- 2. الموبايل (أقل من 600px) --- */
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr; /* تحويل الحقول لتصبح فوق بعضها */
+          gap: 0;
+        }
+        .controls {
+          top: 15px;
+        }
+        .header i {
+          font-size: 2rem;
+        }
+        /* منع الزووم التلقائي في الآيفون وتحسين تجربة الكتابة */
+        input,
+        select,
+        textarea {
+          font-size: 16px !important;
+          padding: 12px 15px;
+        }
+      }
+
+      /* --- 3. الشاشات الصغيرة جداً (أقل من 400px) --- */
+      @media (max-width: 400px) {
+        .booking-card {
+          padding: 20px 15px;
+          border-radius: 20px;
+        }
+        .header h1 {
+          font-size: 1.3rem;
+        }
+        .header p {
+          font-size: 0.85rem;
+        }
+        /* إعادة تموضع أزرار التحكم لتجنب التداخل مع العنوان */
+        .controls {
+          position: relative;
+          top: 0;
+          left: 0 !important;
+          right: 0 !important;
+          justify-content: center;
+          margin-bottom: 15px;
+        }
+        .control-btn {
+          width: 35px;
+          height: 35px;
+          font-size: 0.8rem;
+        }
+        .submit-btn {
+          font-size: 0.95rem;
+          padding: 12px;
+        }
+      }
+
+      /* --- 4. حماية شاملة لجميع الشاشات (أهم جزء لمنع البياض) --- */
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* --- ميديا كويري مخصصة للأيقونات فقط --- */
+
+      @media (max-width: 768px) {
+        /* 1. تصغير أيقونة الهيدر الرئيسية */
+        .header i {
+          font-size: 2.2rem; /* تقليل الحجم قليلاً */
+          margin-bottom: 8px;
+        }
+
+        /* 2. تصغير الأيقونات داخل مربعات الإدخال */
+        .input-box i {
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        /* 3. تعديل المسافات للأيقونات داخل الحقول لتناسب حجم الخط 16px */
+        html[dir="rtl"] .input-box i {
+          right: 12px;
+        }
+        html[dir="ltr"] .input-box i {
+          left: 12px;
+        }
+
+        /* 4. تصغير أيقونات أزرار التحكم (اللغة والثيم) */
+        .control-btn i {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 400px) {
+        /* 5. أيقونة الهيدر في أصغر الشاشات */
+        .header i {
+          font-size: 1.8rem;
+        }
+
+        /* 6. أيقونة زر التأكيد (Submit) */
+        .submit-btn i {
+          font-size: 1rem;
+        }
+
+        /* 7. ضبط أيقونات المدخلات في الشاشات الضيقة جداً */
+        .input-box i {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* --- نصيحة تقنية --- */
+      /* يفضل دائماً استخدام هذه الخاصية للأيقونات لضمان سلاسة حركتها عند تغيير الثيم */
+      .fa,
+      .fas,
+      .fab {
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="booking-card">
+      <div class="controls">
+        <button class="control-btn" id="lang-btn">EN</button>
+        <button class="control-btn" id="theme-btn">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <div class="header">
+        <i class="fas fa-notes-medical"></i>
+        <h1 data-ar="حجز موعد" data-en="Book Appointment">حجز موعد</h1>
+        <p
+          data-ar="نسعد بتقديم أفضل رعاية لأسنانك"
+          data-en="We are happy to provide the best care for your teeth"
+        >
+          نسعد بتقديم أفضل رعاية لأسنانك
+        </p>
+      </div>
+
+      <form id="bookingForm">
+        <div class="field-group">
+          <label data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+          <div class="input-box">
+            <input
+              type="text"
+              id="name"
+              required
+              data-ar="أدخل اسمك الثلاثي"
+              data-en="Enter your full name"
+              placeholder="أدخل اسمك الثلاثي"
+            />
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field-group">
+            <label data-ar="رقم الجوال" data-en="Phone Number"
+              >رقم الجوال</label
+            >
+            <div class="input-box">
+              <input
+                type="tel"
+                id="phone"
+                required
+                data-ar="05xxxxxxxx"
+                data-en="05xxxxxxxx"
+                placeholder="05xxxxxxxx"
+              />
+              <i class="fas fa-phone"></i>
+            </div>
+          </div>
+          <div class="field-group">
+            <label data-ar="الخدمة المطلوبة" data-en="Required Service"
+              >الخدمة المطلوبة</label
+            >
+            <div class="input-box">
+              <select id="service">
+                <option
+                  value="1"
+                  data-ar="فحص روتيني"
+                  data-en="Routine Checkup"
+                >
+                  فحص روتيني
+                </option>
+                <option
+                  value="2"
+                  data-ar="تجميل وتبييض"
+                  data-en="Cosmetic & Whitening"
+                >
+                  تجميل وتبييض
+                </option>
+                <option
+                  value="3"
+                  data-ar="جراحة وتقويم"
+                  data-en="Surgery & Braces"
+                >
+                  جراحة وتقويم
+                </option>
+              </select>
+              <i class="fas fa-tooth"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field-group">
+            <label data-ar="التاريخ" data-en="Date">التاريخ</label>
+            <div class="input-box">
+              <input type="date" id="date" required />
+              <i class="fas fa-calendar-day"></i>
+            </div>
+          </div>
+          <div class="field-group">
+            <label data-ar="الوقت" data-en="Time">الوقت</label>
+            <div class="input-box">
+              <input type="time" id="time" required />
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label data-ar="ملاحظات إضافية" data-en="Additional Notes"
+            >ملاحظات إضافية</label
+          >
+          <div class="input-box">
+            <textarea
+              id="notes"
+              rows="3"
+              data-ar="أي معلومات طبية تريد إخبارنا بها..."
+              data-en="Any medical information you want to tell us..."
+              placeholder="أي معلومات طبية تريد إخبارنا بها..."
+            ></textarea>
+            <i class="fas fa-pen-nib"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span data-ar="تأكيد الحجز" data-en="Confirm Booking"
+            >تأكيد الحجز</span
+          >
+          <i class="fas fa-check-circle"></i>
+        </button>
+      </form>
+    </div>
+
+    <script>
+      const langBtn = document.getElementById("lang-btn");
+      const themeBtn = document.getElementById("theme-btn");
+      const html = document.documentElement;
+      const bookingForm = document.getElementById("bookingForm");
+
+      // 1. نظام الترجمة الشامل
+      function translatePage(lang) {
+        const dir = lang === "ar" ? "rtl" : "ltr";
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", dir);
+        langBtn.innerText = lang === "ar" ? "EN" : "AR";
+
+        // ترجمة كل العناصر التي تحمل سمة data-ar
+        document.querySelectorAll("[data-ar]").forEach((el) => {
+          const text = el.getAttribute(`data-${lang}`);
+
+          // ترجمة الـ Placeholder إذا كان العنصر Input أو Textarea
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+            el.placeholder = text;
+          } else {
+            el.innerText = text;
+          }
+        });
+
+        localStorage.setItem("clinic-lang", lang);
+      }
+
+      langBtn.addEventListener("click", () => {
+        const newLang = html.getAttribute("lang") === "ar" ? "en" : "ar";
+        translatePage(newLang);
+      });
+
+      // 2. نظام الثيم (Dark/Light)
+      themeBtn.addEventListener("click", () => {
+        const isDark = html.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        themeBtn.innerHTML = isDark
+          ? '<i class="fas fa-moon"></i>'
+          : '<i class="fas fa-sun"></i>';
+        localStorage.setItem("clinic-theme", newTheme);
+      });
+
+      // 3. عند تحميل الصفحة (استعادة الإعدادات)
+      window.onload = () => {
+        const savedLang = localStorage.getItem("clinic-lang") || "ar";
+        const savedTheme = localStorage.getItem("clinic-theme") || "light";
+
+        translatePage(savedLang);
+        html.setAttribute("data-theme", savedTheme);
+        if (savedTheme === "dark")
+          themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+      };
+
+      // 4. تفاعل زر الإرسال مع الترجمة
+      bookingForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const currentLang = html.getAttribute("lang");
+        const msg =
+          currentLang === "ar"
+            ? "تم استلام طلبك! سنتواصل معك لتأكيد الموعد."
+            : "Request received! We will contact you to confirm the appointment.";
+
+        alert(msg);
+        bookingForm.reset();
+      });
+    </script>
+  </body>
+</html>

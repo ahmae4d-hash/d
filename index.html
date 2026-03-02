@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smile Clinic | عيادة الابتسامة</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-color: #ffffff;
+        --nav-bg: rgba(255, 255, 255, 0.8);
+        --text-color: #2d3436;
+        --primary: #0984e3;
+        --accent: #00cec9;
+        --card-bg: #fdffdf;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #0f172a;
+        --nav-bg: rgba(15, 23, 42, 0.9);
+        --text-color: #f1f5f9;
+        --primary: #38bdf8;
+        --card-bg: #1e293b;
+        --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      html {
+        scroll-behavior: smooth; /* هذا السطر هو السحر الذي يجعل النزول ناعماً */
+        scroll-padding-top: 80px; /* لإضافة مساحة فوق القسم حتى لا يختفي العنوان تحت الناف بار الثابت */
+      }
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden; /* هذا السطر هو الذي سيحذف الشاشة البيضاء تماماً */
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Tajawal", "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.7;
+        overflow-x: hidden;
+        transition: var(--transition);
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 5%;
+      }
+
+      /* --- Navbar المحسن --- */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        z-index: 2000;
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: 1.05rem;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .control-btn {
+        background: var(--card-bg);
+        border: none;
+        color: var(--text-color);
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        border-radius: 12px;
+        font-weight: bold;
+        display: grid;
+        place-items: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .control-btn:hover {
+        transform: translateY(-3px);
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-cta {
+        background: var(--primary);
+        color: white;
+        padding: 0.8rem 1.8rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 10px 20px rgba(9, 132, 227, 0.2);
+        transition: var(--transition);
+      }
+
+      .btn-cta:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 25px rgba(9, 132, 227, 0.3);
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* --- Hero Section المطور --- */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 100px;
+        background: radial-gradient(
+          circle at 90% 10%,
+          rgba(9, 132, 227, 0.08) 0%,
+          transparent 40%
+        );
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .hero-content h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        color: var(--primary);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-content p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        max-width: 600px;
+      }
+
+      .hero-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .btn-outline {
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        padding: 0.8rem 1.8rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: var(--transition);
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .hero-image {
+        position: relative;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 40px;
+        box-shadow: var(--shadow);
+        animation: float 5s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-25px) rotate(1deg);
+        }
+      }
+
+      /* --- تنسيقات الخدمات --- */
+      .services {
+        padding: 100px 0;
+        background: var(--bg-color);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background: var(--card-bg);
+        padding: 40px 30px;
+        border-radius: 25px;
+        text-align: center;
+        transition: var(--transition);
+        border: 1px solid rgba(9, 132, 227, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card:hover {
+        transform: translateY(-15px);
+        box-shadow: var(--shadow);
+        border-color: var(--primary);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        transition: var(--transition);
+      }
+
+      .service-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      /* تمييز كارت معين */
+      .active-card {
+        background: var(--primary);
+        color: white;
+      }
+      .active-card .service-icon {
+        color: white;
+      }
+      .active-card p {
+        opacity: 0.9;
+      }
+
+      /* --- زر العودة للأعلى --- */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        display: none; /* مخفي افتراضياً */
+        z-index: 2000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+      }
+
+      .back-to-top:hover {
+        transform: scale(1.1);
+        background: var(--accent);
+      }
+
+      /* تعديل مكان الزر في حالة اللغة الإنجليزية */
+      html[dir="ltr"] .back-to-top {
+        right: auto;
+        left: 30px;
+      }
+
+      /* --- تنسيقات قسم الأطباء --- */
+      .doctors {
+        padding: 100px 0;
+        background: var(--bg-color);
+      }
+
+      .doctors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .doctor-card {
+        background: var(--card-bg);
+        border-radius: 30px;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .doctor-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .doctor-image {
+        position: relative;
+        height: 350px;
+        overflow: hidden;
+      }
+
+      .doctor-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .doctor-card:hover .doctor-image img {
+        transform: scale(1.1);
+      }
+
+      /* تأثير السوشيال ميديا عند التمرير */
+      .doctor-social {
+        position: absolute;
+        bottom: -60px; /* مخفي تحت */
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--nav-bg);
+        backdrop-filter: blur(10px);
+        padding: 15px 25px;
+        border-radius: 50px;
+        display: flex;
+        gap: 20px;
+        transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .doctor-card:hover .doctor-social {
+        bottom: 20px;
+      }
+
+      .doctor-social a {
+        color: var(--primary);
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+
+      .doctor-social a:hover {
+        color: var(--accent);
+        transform: scale(1.2);
+      }
+
+      .doctor-info {
+        padding: 25px;
+      }
+
+      .doctor-info h3 {
+        font-size: 1.4rem;
+        color: var(--text-color);
+        margin-bottom: 8px;
+      }
+
+      .doctor-info span {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      /* --- تنسيقات قسم اتصل بنا --- */
+      .contact {
+        padding: 100px 0;
+        background: var(--bg-color);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 50px;
+        align-items: start;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .info-item:hover {
+        transform: translateX(-10px);
+      }
+      html[dir="ltr"] .info-item:hover {
+        transform: translateX(10px);
+      }
+
+      .info-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        color: white;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 1.2rem;
+      }
+
+      /* تصميم الفورم الاحترافي */
+      .contact-form {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .form-group {
+        position: relative;
+        margin-bottom: 25px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        background: var(--bg-color);
+        border: 2px solid transparent;
+        border-radius: 12px;
+        outline: none;
+        color: var(--text-color);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary);
+      }
+
+      .form-group label {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        color: #888;
+        pointer-events: none;
+        transition: var(--transition);
+      }
+
+      html[dir="ltr"] .form-group label {
+        right: auto;
+        left: 15px;
+      }
+
+      .form-group textarea ~ label {
+        top: 20px;
+        transform: none;
+      }
+
+      /* حركة التسمية الطائرة (Floating Label) */
+      .form-group input:focus ~ label,
+      .form-group input:not(:placeholder-shown) ~ label,
+      .form-group textarea:focus ~ label,
+      .form-group textarea:not(:placeholder-shown) ~ label {
+        top: -12px;
+        right: 10px;
+        font-size: 0.8rem;
+        color: var(--primary);
+        background: var(--card-bg);
+        padding: 0 5px;
+      }
+      html[dir="ltr"] .form-group input:focus ~ label {
+        right: auto;
+        left: 10px;
+      }
+
+      .w-100 {
+        width: 100%;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* --- تنسيقات الفوتر --- */
+      .footer {
+        background: var(--card-bg);
+        padding: 80px 0 0;
+        margin-top: 50px;
+        border-top: 1px solid rgba(9, 132, 227, 0.1);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr; /* الشعار يأخذ مساحة أكبر */
+        gap: 50px;
+        margin-bottom: 50px;
+      }
+
+      .footer-col h4 {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+        color: var(--primary);
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--accent);
+      }
+      html[dir="ltr"] .footer-col h4::after {
+        right: auto;
+        left: 0;
+      }
+
+      .footer-desc {
+        margin: 20px 0;
+        opacity: 0.8;
+        max-width: 350px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+      }
+
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        background: var(--bg-color);
+        color: var(--primary);
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        font-size: 1.1rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .footer-social a:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-5px);
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+        color: var(--text-color);
+        opacity: 0.8;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary);
+        opacity: 1;
+        padding-right: 10px;
+      }
+      html[dir="ltr"] .footer-links a:hover {
+        padding-right: 0;
+        padding-left: 10px;
+      }
+
+      .work-hours {
+        list-style: none;
+      }
+
+      .work-hours li {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+      }
+
+      .work-hours span:first-child {
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      .footer-bottom {
+        padding: 25px 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        text-align: center;
+        background: rgba(0, 0, 0, 0.02);
+      }
+
+      /* --- إعدادات أساسية لضمان عمل الهامبرجر --- */
+      .hamburger {
+        display: none; /* مخفي في الديسكتوب */
+        cursor: pointer;
+        z-index: 2100;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--primary);
+        margin: 5px 0;
+        transition: 0.4s;
+        border-radius: 5px;
+      }
+
+      /* --- تعديلات الشاشات المتوسطة والصغيرة (1024px فما دون) --- */
+      @media (max-width: 1024px) {
+        .hamburger {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 0;
+          /* نستخدم منطق القيمة الواحدة للاتجاهين لضمان عدم التداخل */
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: var(--bg-color);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+          transition: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+          z-index: 2005;
+          gap: 30px; /* مسافة بين الروابط */
+        }
+
+        .nav-links.active {
+          right: 0 !important;
+          left: 0 !important;
+        }
+
+        /* --- حل مشكلة اتجاه القائمة (اللغة) --- */
+        html[dir="rtl"] .nav-links {
+          right: -100%;
+          left: auto;
+        }
+
+        html[dir="ltr"] .nav-links {
+          left: -100%;
+          right: auto;
+        }
+
+        /* --- حركة الـ X للهامبرجر --- */
+        .hamburger.active .bar1 {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger.active .bar2 {
+          opacity: 0;
+        }
+        .hamburger.active .bar3 {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+      }
+
+      /* --- تعديلات الموبايل (768px فما دون) --- */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .hero {
+          padding: 120px 0 60px;
+          text-align: center;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .hero-image {
+          order: -1; /* الصورة أولاً */
+          max-width: 80%;
+          margin: 0 auto;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+
+        .hero-btns {
+          flex-direction: column;
+          width: 100%;
+          max-width: 300px;
+          margin: 0 auto;
+        }
+
+        .hero-btns .btn {
+          width: 100%; /* أزرار بعرض كامل للموبايل */
+        }
+
+        .services-grid,
+        .doctors-grid,
+        .contact-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .nav-hide {
+          display: none !important;
+        }
+
+        .info-item {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        /* تحسين الفوتر في الموبايل */
+        .footer-col h4::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      /* --- الهواتف الصغيرة جداً --- */
+      @media (max-width: 400px) {
+        .hero-content h1 {
+          font-size: 1.7rem;
+        }
+
+        .control-btn {
+          width: 35px;
+          height: 35px;
+        }
+      }
+
+      /* --- الشاشات الصغيرة جداً (أقل من 400 بكسل) --- */
+      @media (max-width: 400px) {
+        /* 1. الحاوية: تقليل الحواف الجانبية لأقصى حد لاستغلال المساحة */
+        .container {
+          padding: 0 10px;
+        }
+
+        /* 2. الهيرو (Hero Section) */
+        .hero-content h1 {
+          font-size: 1.6rem; /* تصغير الخط لضمان عدم انكسار الكلمات الطويلة */
+          line-height: 1.2;
+          margin-bottom: 15px;
+        }
+
+        .hero-content p {
+          font-size: 0.9rem;
+          padding: 0 5px;
+        }
+
+        /* 3. الأزرار: جعلها تحت بعضها وبعرض كامل */
+        .hero-btns {
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+        }
+
+        .hero-btns .btn {
+          width: 100%; /* سهولة الضغط بالإبهام */
+          padding: 12px;
+          font-size: 0.95rem;
+        }
+
+        /* 4. الناف بار (Navbar) */
+        .logo span {
+          font-size: 1.1rem; /* تصغير حجم اللوجو */
+        }
+
+        .control-btn {
+          width: 34px; /* تصغير أزرار اللغة والدارك مود قليلاً */
+          height: 34px;
+          font-size: 0.8rem;
+        }
+
+        /* 5. القائمة الجانبية (Nav Links) */
+        .nav-links {
+          width: 100%; /* تأخذ الشاشة كاملة في الموبايل الصغير جداً */
+        }
+
+        /* 6. كروت الخدمات والأطباء */
+        .service-card,
+        .doctor-card {
+          padding: 20px 15px;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+        }
+
+        /* 7. الفورم (Contact Form) */
+        .contact-form {
+          padding: 20px 15px;
+        }
+
+        input,
+        textarea {
+          font-size: 16px !important; /* يمنع متصفح Safari من عمل Zoom تلقائي عند الكتابة */
+        }
+
+        /* 8. زر العودة للأعلى */
+        #backToTop {
+          width: 40px;
+          height: 40px;
+          bottom: 15px;
+          right: 15px;
+        }
+      }
+
+      /* --- تصميم زر الهامبرجر الاحترافي --- */
+
+      /* إظهار الزر في الشاشات الصغيرة والمتوسطة */
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container nav-content">
+        <a href="#" class="logo">
+          <i class="fas fa-tooth"></i> <span>SmileClinic</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+          <li>
+            <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+          </li>
+          <li>
+            <a href="#doctors" data-ar="الأطباء" data-en="Doctors">الأطباء</a>
+          </li>
+          <li>
+            <a href="#contact" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a>
+          </li>
+        </ul>
+
+        <div class="nav-controls">
+          <button id="lang-btn" class="control-btn" title="Translate">
+            EN
+          </button>
+          <button id="theme-btn" class="control-btn" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <a
+            href="reservation.html"
+            class="btn-cta nav-hide"
+            data-ar="احجز الآن"
+            data-en="Book Now"
+            >احجز الآن</a
+          >
+        </div>
+        <div class="hamburger" id="menu-icon">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="#">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1
+            data-ar="ابتسامة تضيء حياتك"
+            data-en="A Smile That Lights Your Life"
+          >
+            ابتسامة تضيء حياتك
+          </h1>
+          <p
+            data-ar="نحن نعتني بأسنانك بأحدث التقنيات العالمية لضمان تجربة غير مؤلمة ونتائج مبهرة تفوق توقعاتك."
+            data-en="We care for your teeth with the latest global technologies to ensure a painless experience and stunning results beyond your expectations."
+          >
+            نحن نعتني بأسنانك بأحدث التقنيات العالمية لضمان تجربة غير مؤلمة
+            ونتائج مبهرة تفوق توقعاتك.
+          </p>
+          <div class="hero-btns">
+            <a
+              href="reservation.html"
+              class="btn-cta"
+              data-ar="ابدأ رحلتك"
+              data-en="Start Journey"
+              >ابدأ رحلتك</a
+            >
+            <a
+              href="#"
+              class="btn-outline"
+              data-ar="مشاهدة الفيديو"
+              data-en="Watch Video"
+              ><i class="fas fa-play"></i> مشاهدة الفيديو</a
+            >
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="/unnamed.jpg" alt="" />
+        </div>
+      </div>
+    </header>
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-ar="خدماتنا المتميزة" data-en="Our Premium Services">
+            خدماتنا المتميزة
+          </h2>
+          <p
+            data-ar="نقدم حلولاً متكاملة لصحة وجمال أسنانك بأيدي أمهر الأطباء."
+            data-en="We offer integrated solutions for your dental health and beauty by the most skilled doctors."
+          >
+            نقدم حلولاً متكاملة لصحة وجمال أسنانك بأيدي أمهر الأطباء.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-vial"></i></div>
+            <h3 data-ar="تبييض الأسنان" data-en="Teeth Whitening">
+              تبييض الأسنان
+            </h3>
+            <p
+              data-ar="احصل على ابتسامة ناصعة البياض في جلسة واحدة فقط."
+              data-en="Get a bright white smile in just one session."
+            >
+              احصل على ابتسامة ناصعة البياض في جلسة واحدة فقط.
+            </p>
+          </div>
+          <div class="service-card active-card">
+            <div class="service-icon"><i class="fas fa-tooth"></i></div>
+            <h3 data-ar="زراعة الأسنان" data-en="Dental Implants">
+              زراعة الأسنان
+            </h3>
+            <p
+              data-ar="أحدث تقنيات الزراعة بدون ألم وبنتائج دائمة."
+              data-en="Latest implant technologies without pain and with permanent results."
+            >
+              أحدث تقنيات الزراعة بدون ألم وبنتائج دائمة.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-align-center"></i></div>
+            <h3 data-ar="تقويم الأسنان" data-en="Orthodontics">
+              تقويم الأسنان
+            </h3>
+            <p
+              data-ar="تصحيح اصطفاف الأسنان بأحدث الأنواع الشفافة والمعدنية."
+              data-en="Correcting tooth alignment with the latest transparent and metal types."
+            >
+              تصحيح اصطفاف الأسنان بأحدث الأنواع الشفافة والمعدنية.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-user-md"></i></div>
+            <h3 data-ar="طب أسنان الأطفال" data-en="Pediatric Dentistry">
+              طب أسنان الأطفال
+            </h3>
+            <p
+              data-ar="رعاية خاصة وحنونة لأطفالكم لضمان نمو أسنان سليمة."
+              data-en="Special and gentle care for your children to ensure healthy tooth growth."
+            >
+              رعاية خاصة وحنونة لأطفالكم لضمان نمو أسنان سليمة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <button id="backToTop" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <section class="doctors" id="doctors">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-ar="نخبة الأطباء" data-en="Our Expert Doctors">
+            نخبة الأطباء
+          </h2>
+          <p
+            data-ar="فريق طبي متخصص يجمع بين الخبرة الأكاديمية واللمسة الإبداعية."
+            data-en="A specialized medical team combining academic expertise and creative touch."
+          >
+            فريق طبي متخصص يجمع بين الخبرة الأكاديمية واللمسة الإبداعية.
+          </p>
+        </div>
+
+        <div class="doctors-grid">
+          <div class="doctor-card">
+            <div class="doctor-image">
+              <img
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80"
+                alt="Doctor"
+              />
+              <div class="doctor-social">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="doctor-info">
+              <h3 data-ar="د. أحمد سامي" data-en="Dr. Ahmed Sami">
+                د. أحمد سامي
+              </h3>
+              <span
+                data-ar="إخصائي جراحة الوجه والفكين"
+                data-en="Oral & Maxillofacial Surgeon"
+                >إخصائي جراحة الوجه والفكين</span
+              >
+            </div>
+          </div>
+
+          <div class="doctor-card">
+            <div class="doctor-image">
+              <img src="/unnamed.jpg" alt="Doctor" />
+              <div class="doctor-social">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="doctor-info">
+              <h3 data-ar="د. أحمد المنصور" data-en="Dr. Sarah Mansour">
+                د. محمد المنصورى
+              </h3>
+              <span
+                data-ar="  إخصائي تجميل وتقويم الأسنان "
+                data-en="Cosmetic & Orthodontist"
+                >إخصائي تجميل وتقويم الأسنان</span
+              >
+            </div>
+          </div>
+
+          <div class="doctor-card">
+            <div class="doctor-image">
+              <img
+                src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=80"
+                alt="Doctor"
+              />
+              <div class="doctor-social">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="doctor-info">
+              <h3 data-ar="د. خالد كريم" data-en="Dr. Khaled Karim">
+                د. خالد كريم
+              </h3>
+              <span
+                data-ar="إخصائي طب أسنان الأطفال"
+                data-en="Pediatric Dentist"
+                >إخصائي طب أسنان الأطفال</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+          <p
+            data-ar="نحن هنا للإجابة على استفساراتكم وحجز مواعيدكم على مدار الساعة."
+            data-en="We are here to answer your inquiries and book your appointments around the clock."
+          >
+            نحن هنا للإجابة على استفساراتكم وحجز مواعيدكم على مدار الساعة.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <h4 data-ar="موقعنا" data-en="Location">موقعنا</h4>
+                <p
+                  data-ar="القاهرة، مدينة نصر، شارع الطيران"
+                  data-en="Cairo, Nasr City, Tayaran St."
+                >
+                  القاهرة، مدينة نصر، شارع الطيران
+                </p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+              <div>
+                <h4 data-ar="اتصل بنا" data-en="Call Us">اتصل بنا</h4>
+                <p dir="ltr">+20 123 456 7890</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4 data-ar="البريد الإلكتروني" data-en="Email">
+                  البريد الإلكتروني
+                </h4>
+                <p>info@smileclinic.com</p>
+              </div>
+            </div>
+            <div class="contact-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.1578135835!2d31.332765!3d30.061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAzJzM5LjYiTiAzMcKwMTknNTguMCJF!5e0!3m2!1sen!2seg!4v1625000000000!5m2!1sen!2seg"
+                width="100%"
+                height="150"
+                style="border: 0; border-radius: 15px"
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+
+          <form class="contact-form">
+            <div class="form-group">
+              <input type="text" placeholder=" " id="name" required />
+              <label data-ar="الاسم الكامل" data-en="Full Name"
+                >الاسم الكامل</label
+              >
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder=" " id="email" required />
+              <label data-ar="البريد الإلكتروني" data-en="Email Address"
+                >البريد الإلكتروني</label
+              >
+            </div>
+            <div class="form-group">
+              <textarea
+                placeholder=" "
+                id="message"
+                rows="5"
+                required
+              ></textarea>
+              <label data-ar="رسالتك" data-en="Your Message">رسالتك</label>
+            </div>
+            <button
+              type="submit"
+              class="btn-cta w-100"
+              data-ar="إرسال الرسالة"
+              data-en="Send Message"
+            >
+              إرسال الرسالة
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <i class="fas fa-tooth"></i> <span>SmileClinic</span>
+          </div>
+          <p
+            class="footer-desc"
+            data-ar="نحن نؤمن أن الابتسامة الجميلة تبدأ برعاية صحية متميزة. عيادتنا مجهزة بأحدث التقنيات لخدمتكم."
+            data-en="We believe a beautiful smile starts with exceptional healthcare. Our clinic is equipped with the latest technology to serve you."
+          >
+            نحن نؤمن أن الابتسامة الجميلة تبدأ برعاية صحية متميزة. عيادتنا مجهزة
+            بأحدث التقنيات لخدمتكم.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fab fa-x-twitter"></i
+            ></a>
+            <a href="#" aria-label="WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+            <li>
+              <a href="#services" data-ar="خدماتنا" data-en="Services"
+                >خدماتنا</a
+              >
+            </li>
+            <li>
+              <a href="#doctors" data-ar="الأطباء" data-en="Doctors">الأطباء</a>
+            </li>
+            <li>
+              <a href="#contact" data-ar="اتصل بنا" data-en="Contact"
+                >اتصل بنا</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-ar="ساعات العمل" data-en="Working Hours">ساعات العمل</h4>
+          <ul class="work-hours">
+            <li>
+              <span data-ar="السبت - الخميس" data-en="Sat - Thu"
+                >السبت - الخميس</span
+              >
+              <span>09:00 AM - 10:00 PM</span>
+            </li>
+            <li>
+              <span data-ar="الجمعة" data-en="Friday">الجمعة</span>
+              <span data-ar="مغلق" data-en="Closed">مغلق</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p>
+            &copy; 2026 SmileClinic.
+            <span data-ar="جميع الحقوق محفوظة" data-en="All Rights Reserved"
+              >جميع الحقوق محفوظة</span
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const themeBtn = document.getElementById("theme-btn");
+      const langBtn = document.getElementById("lang-btn");
+      const menuIcon = document.getElementById("menu-icon");
+      const navLinks = document.getElementById("nav-links");
+      const backToTopBtn = document.getElementById("backToTop");
+      const html = document.documentElement;
+
+      // --- 2. منطق الثيم (Dark/Light Mode) ---
+      themeBtn.addEventListener("click", () => {
+        const isDark = html.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+
+        // تحديث الأيقونة
+        themeBtn.innerHTML = isDark
+          ? '<i class="fas fa-moon"></i>'
+          : '<i class="fas fa-sun"></i>';
+      });
+
+      // --- 3. منطق اللغة والترجمة ---
+      langBtn.addEventListener("click", () => {
+        const currentLang = html.getAttribute("lang") || "ar";
+        const newLang = currentLang === "ar" ? "en" : "ar";
+        const newDir = newLang === "ar" ? "rtl" : "ltr";
+
+        html.setAttribute("lang", newLang);
+        html.setAttribute("dir", newDir);
+        langBtn.innerText = newLang === "ar" ? "EN" : "AR";
+
+        // تبديل النصوص بناءً على data-ar و data-en
+        document.querySelectorAll("[data-ar]").forEach((el) => {
+          const text = el.getAttribute(`data-${newLang}`);
+          if (text) el.innerText = text;
+        });
+      });
+
+      // --- 4. منطق قائمة الهامبرغر (Mobile Menu) ---
+      menuIcon.addEventListener("click", () => {
+        menuIcon.classList.toggle("active");
+        navLinks.classList.toggle("active");
+
+        // تبديل شكل الأيقونة إذا كنت تستخدم FontAwesome داخل الـ HTML
+        const icon = menuIcon.querySelector("i");
+        if (icon) {
+          icon.classList.toggle("fa-bars-staggered");
+          icon.classList.toggle("fa-xmark");
+        }
+      });
+
+      // إغلاق القائمة عند الضغط على أي رابط
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menuIcon.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // --- 5. منطق زر العودة للأعلى (Back to Top) ---
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+          backToTopBtn.style.display = "grid"; // أو block حسب تصميمك
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // --- 6. حفظ الإعدادات عند تحميل الصفحة ---
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          html.setAttribute("data-theme", savedTheme);
+          themeBtn.innerHTML =
+            savedTheme === "dark"
+              ? '<i class="fas fa-sun"></i>'
+              : '<i class="fas fa-moon"></i>';
+        }
+      });
+    </script>
+  </body>
+</html>
