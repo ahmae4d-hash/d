@@ -544,25 +544,32 @@
         bookingForm.reset();
       });
 
-      function sendMessage(event) {
-    event.preventDefault();
+      function bookAppointment(event) {
+    event.preventDefault(); // منع الصفحة من التحميل
 
-    const newMessage = {
+    // جلب البيانات من الفورم
+    const newRequest = {
         id: Date.now(),
-        sender: document.getElementById('contactName').value,
-        email: document.getElementById('contactEmail').value,
-        content: document.getElementById('contactMessage').value,
-        time: new Date().toLocaleString(),
-        status: 'unread'
+        name: document.getElementById('patientName').value,
+        phone: document.getElementById('patientPhone').value,
+        service: document.getElementById('serviceType').value,
+        date: document.getElementById('prefDate').value,
+        status: 'pending' // حالة الطلب
     };
 
-    let messages = JSON.parse(localStorage.getItem('site-messages')) || [];
-    messages.push(newMessage);
-    localStorage.setItem('site-messages', JSON.stringify(messages));
+    // جلب الطلبات القديمة أو إنشاء مصفوفة جديدة
+    let requests = JSON.parse(localStorage.getItem('pending-appointments')) || [];
+    
+    // إضافة الطلب الجديد
+    requests.push(newRequest);
+    
+    // الحفظ في LocalStorage
+    localStorage.setItem('pending-appointments', JSON.stringify(requests));
 
-    alert("شكراً لتواصلك معنا، تم استلام رسالتك.");
+    alert("تم إرسال طلب الحجز بنجاح، سيتصل بك فريقنا قريباً.");
 }
     </script>
   </body>
 </html>
+
 
