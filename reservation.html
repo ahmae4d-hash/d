@@ -543,6 +543,26 @@
         alert(msg);
         bookingForm.reset();
       });
+
+      function sendMessage(event) {
+    event.preventDefault();
+
+    const newMessage = {
+        id: Date.now(),
+        sender: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        content: document.getElementById('contactMessage').value,
+        time: new Date().toLocaleString(),
+        status: 'unread'
+    };
+
+    let messages = JSON.parse(localStorage.getItem('site-messages')) || [];
+    messages.push(newMessage);
+    localStorage.setItem('site-messages', JSON.stringify(messages));
+
+    alert("شكراً لتواصلك معنا، تم استلام رسالتك.");
+}
     </script>
   </body>
 </html>
+
