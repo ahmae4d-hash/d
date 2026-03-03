@@ -35,13 +35,13 @@
       }
 
       html {
-        scroll-behavior: smooth; /* هذا السطر هو السحر الذي يجعل النزول ناعماً */
-        scroll-padding-top: 80px; /* لإضافة مساحة فوق القسم حتى لا يختفي العنوان تحت الناف بار الثابت */
+        scroll-behavior: smooth; 
+        scroll-padding-top: 80px; 
       }
       html,
       body {
         max-width: 100%;
-        overflow-x: hidden; /* هذا السطر هو الذي سيحذف الشاشة البيضاء تماماً */
+        overflow-x: hidden; 
         margin: 0;
         padding: 0;
         position: relative;
@@ -68,7 +68,7 @@
         padding: 0 5%;
       }
 
-      /* --- Navbar المحسن --- */
+      /* --- Navbar  --- */
       .navbar {
         position: fixed;
         top: 0;
@@ -164,7 +164,7 @@
         cursor: pointer;
       }
 
-      /* --- Hero Section المطور --- */
+      /* --- Hero Section  --- */
       .hero {
         min-height: 100vh;
         display: flex;
@@ -472,7 +472,7 @@
         font-size: 1.2rem;
       }
 
-      /* تصميم الفورم الاحترافي */
+      /* تصميم الفورم  */
       .contact-form {
         background: var(--card-bg);
         padding: 40px;
@@ -661,9 +661,8 @@
         background: rgba(0, 0, 0, 0.02);
       }
 
-      /* --- إعدادات أساسية لضمان عمل الهامبرجر --- */
       .hamburger {
-        display: none; /* مخفي في الديسكتوب */
+        display: none; 
         cursor: pointer;
         z-index: 2100;
         background: none;
@@ -680,7 +679,6 @@
         border-radius: 5px;
       }
 
-      /* --- تعديلات الشاشات المتوسطة والصغيرة (1024px فما دون) --- */
       @media (max-width: 1024px) {
         .hamburger {
           display: block;
@@ -689,7 +687,6 @@
         .nav-links {
           position: fixed;
           top: 0;
-          /* نستخدم منطق القيمة الواحدة للاتجاهين لضمان عدم التداخل */
           right: -100%;
           width: 280px;
           height: 100vh;
@@ -708,7 +705,6 @@
           left: 0 !important;
         }
 
-        /* --- حل مشكلة اتجاه القائمة (اللغة) --- */
         html[dir="rtl"] .nav-links {
           right: -100%;
           left: auto;
@@ -731,7 +727,6 @@
         }
       }
 
-      /* --- تعديلات الموبايل (768px فما دون) --- */
       @media (max-width: 768px) {
         .container {
           padding: 0 20px;
@@ -748,7 +743,7 @@
         }
 
         .hero-image {
-          order: -1; /* الصورة أولاً */
+          order: -1; 
           max-width: 80%;
           margin: 0 auto;
         }
@@ -766,7 +761,7 @@
         }
 
         .hero-btns .btn {
-          width: 100%; /* أزرار بعرض كامل للموبايل */
+          width: 100%; 
         }
 
         .services-grid,
@@ -786,14 +781,12 @@
           text-align: center;
         }
 
-        /* تحسين الفوتر في الموبايل */
         .footer-col h4::after {
           left: 50%;
           transform: translateX(-50%);
         }
       }
 
-      /* --- الهواتف الصغيرة جداً --- */
       @media (max-width: 400px) {
         .hero-content h1 {
           font-size: 1.7rem;
@@ -805,16 +798,13 @@
         }
       }
 
-      /* --- الشاشات الصغيرة جداً (أقل من 400 بكسل) --- */
       @media (max-width: 400px) {
-        /* 1. الحاوية: تقليل الحواف الجانبية لأقصى حد لاستغلال المساحة */
         .container {
           padding: 0 10px;
         }
 
-        /* 2. الهيرو (Hero Section) */
         .hero-content h1 {
-          font-size: 1.6rem; /* تصغير الخط لضمان عدم انكسار الكلمات الطويلة */
+          font-size: 1.6rem; 
           line-height: 1.2;
           margin-bottom: 15px;
         }
@@ -824,7 +814,6 @@
           padding: 0 5px;
         }
 
-        /* 3. الأزرار: جعلها تحت بعضها وبعرض كامل */
         .hero-btns {
           flex-direction: column;
           gap: 10px;
@@ -832,28 +821,27 @@
         }
 
         .hero-btns .btn {
-          width: 100%; /* سهولة الضغط بالإبهام */
+          width: 100%; 
           padding: 12px;
           font-size: 0.95rem;
         }
 
         /* 4. الناف بار (Navbar) */
         .logo span {
-          font-size: 1.1rem; /* تصغير حجم اللوجو */
+          font-size: 1.1rem; 
         }
 
         .control-btn {
-          width: 34px; /* تصغير أزرار اللغة والدارك مود قليلاً */
+          width: 34px;
           height: 34px;
           font-size: 0.8rem;
         }
 
         /* 5. القائمة الجانبية (Nav Links) */
         .nav-links {
-          width: 100%; /* تأخذ الشاشة كاملة في الموبايل الصغير جداً */
+          width: 100%; 
         }
 
-        /* 6. كروت الخدمات والأطباء */
         .service-card,
         .doctor-card {
           padding: 20px 15px;
@@ -863,17 +851,15 @@
           font-size: 1.5rem;
         }
 
-        /* 7. الفورم (Contact Form) */
         .contact-form {
           padding: 20px 15px;
         }
 
         input,
         textarea {
-          font-size: 16px !important; /* يمنع متصفح Safari من عمل Zoom تلقائي عند الكتابة */
+          font-size: 16px !important; 
         }
 
-        /* 8. زر العودة للأعلى */
         #backToTop {
           width: 40px;
           height: 40px;
@@ -882,9 +868,7 @@
         }
       }
 
-      /* --- تصميم زر الهامبرجر الاحترافي --- */
-
-      /* إظهار الزر في الشاشات الصغيرة والمتوسطة */
+    
     </style>
   </head>
   <body>
@@ -955,11 +939,11 @@
               >ابدأ رحلتك</a
             >
             <a
-              href="#"
+              href="#contact"
               class="btn-outline"
-              data-ar="مشاهدة الفيديو"
-              data-en="Watch Video"
-              ><i class="fas fa-play"></i> مشاهدة الفيديو</a
+              data-ar="ااتصل بنا "
+              data-en="Contact Us"
+              ><i class="fas fa-play"></i>  اتصل بنا </a
             >
           </div>
         </div>
@@ -1338,7 +1322,6 @@
         menuIcon.classList.toggle("active");
         navLinks.classList.toggle("active");
 
-        // تبديل شكل الأيقونة إذا كنت تستخدم FontAwesome داخل الـ HTML
         const icon = menuIcon.querySelector("i");
         if (icon) {
           icon.classList.toggle("fa-bars-staggered");
